@@ -53,16 +53,16 @@ _$UserDataModelImpl _$$UserDataModelImplFromJson(Map<String, dynamic> json) {
 
   
    return  _$UserDataModelImpl(
-      accessToken: json['accessToken'] as String,
-      refreshToken: json['refreshToken'] as String,
-      userId: json['userId'] as int,
-      userName: json['userName'] as String,
+      accessToken: json['access'] as String,
+      refreshToken: json['refresh'] as String,
+      userId: json['user_id'] as int,
+      userName: json['username'] as String,
       userGroupId: userGroup.isEmpty ? 0:userGroup[0]["id"],
       userGroupName:userGroup.isEmpty ? "":userGroup[0]["name"],
-      retailerId: json['retailerId'] as int,
-      retailerName: json['retailerName'] as String,
-      distributerId: json['distributerId'] as int,
-      distributerName: json['distributerName'] as String,
+      retailerId: json['retailer_id'] ?? 0,
+      retailerName: retailerName,
+      distributerId: json['distributer_id'] ?? 0,
+      distributerName: distributerName,
       userType: userType,
     );
 }
