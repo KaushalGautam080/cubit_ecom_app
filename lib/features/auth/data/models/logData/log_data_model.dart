@@ -12,7 +12,7 @@ class LogDataModel extends LogData with _$LogDataModel {
     @Default(false) bool biometricEnabled,
   }) = _LogDataModel;
 
-  factory LogDataModel.empty() => LogDataModel(
+  factory LogDataModel.empty() => const LogDataModel(
         username: "",
         password: "",
         rememberMe: false,
