@@ -1,9 +1,15 @@
+import 'dart:io';
+
+import 'package:cubit_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:cubit_app/features/auth/presentation/pages/login.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
+  HttpOverrides.global = MyHttpOverrides();
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -11,10 +17,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return BlocProvider(create: (context) =>AuthCubit(),child: const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: Login(),
-    );
+    ));
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

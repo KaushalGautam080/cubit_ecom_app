@@ -1,4 +1,4 @@
-const String baseUrl = "https://scheme.yetiflooring.com.np/";
+const String baseUrl = "https://rscheme.pagodalabs.com.np/";
 const String apiUrl = "${baseUrl}api/";
 const String authUrl = "${baseUrl}auth/";
 

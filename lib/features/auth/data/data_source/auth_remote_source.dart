@@ -22,10 +22,12 @@ class AuthRemoteSourceImpl implements AuthRemoteSource {
       final response = await dio.post(loginUrl,
           data: formData,
           options: Options(
-            validateStatus: (status) => status == 200,
+            validateStatus: (status) => status == 200 || status ==401,
           ));
-      if (response.statusCode == 200) {
+        print("Response: $response");
+      if (response.statusCode == 200 || response.statusCode ==401) {
         Map<String, dynamic> data = response.data;
+        print(data);
         UserDataModel userDataModel = UserDataModel.fromJson(data);
         return SuccessState(data: userDataModel);
       }

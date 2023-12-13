@@ -1,4 +1,7 @@
+import 'package:cubit_app/features/auth/data/models/logData/log_data_model.dart';
+import 'package:cubit_app/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,6 +13,14 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  late final AuthCubit authCubit;
+  @override
+  void initState() {
+    super.initState();
+    authCubit = BlocProvider.of<AuthCubit>(context);
+    _emailController.text = "superadmin";
+    _passwordController.text = "admin@123";
+  }
 
   @override
   void dispose() {
@@ -50,7 +61,6 @@ class _LoginState extends State<Login> {
             controller: _passwordController,
             decoration: const InputDecoration(
               hintText: "Enter your password",
-              
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 3,
@@ -64,9 +74,15 @@ class _LoginState extends State<Login> {
             ),
           ),
           InkWell(
-            onTap: () {
+            onTap: () async {
               print(_emailController.text);
               print(_passwordController.text);
+              LogDataModel param = LogDataModel(
+                username: _emailController.text,
+                password: _passwordController.text,
+              );
+              await authCubit.login(param,context);
+
             },
             child: Container(
               height: 30,
