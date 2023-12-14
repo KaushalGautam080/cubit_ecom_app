@@ -12,5 +12,19 @@ class AuthRepoImpl implements AuthRepo{
     
     
   }
+  
+ 
+  
+  @override
+  Future<DataState<bool>> saveUserData(UserDataModel param) {
+    // TODO: implement saveUserData
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<DataState<UserDataModel>> getUserData() {
+    // TODO: implement getUserData
+    throw UnimplementedError();
+  }
 
 }
