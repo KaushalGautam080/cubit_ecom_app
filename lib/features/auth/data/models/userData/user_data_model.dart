@@ -42,7 +42,7 @@ _$UserDataModelImpl _$$UserDataModelImplFromJson(Map<String, dynamic> json) {
   UserType userType =UserType.none;
   List userGroup = json["user_group"] as List;
   String retailerName = json["retailer_name"] ?? "";
-  String distributerName = json["retailer_name"] ?? "";
+  String distributerName = json["distributor_name"] ?? "";
   if(userGroup.isEmpty){
     userType = UserType.admin;
   }else if (retailerName.isNotEmpty){
@@ -61,7 +61,7 @@ _$UserDataModelImpl _$$UserDataModelImplFromJson(Map<String, dynamic> json) {
       userGroupName:userGroup.isEmpty ? "":userGroup[0]["name"],
       retailerId: json['retailer_id'] ?? 0,
       retailerName: retailerName,
-      distributerId: json['distributer_id'] ?? 0,
+      distributerId: json['distributor_id'] ?? 0,
       distributerName: distributerName,
       userType: userType,
     );
@@ -70,7 +70,7 @@ _$UserDataModelImpl _$$UserDataModelImplFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$$UserDataModelImplToJson(_$UserDataModelImpl instance) {
   List userGroup = [];
-  if(instance.userGroupId !=0 && instance.userGroupName != ""){
+  if(instance.userGroupId != 0 && instance.userGroupName != ""){
     userGroup.add({
       "id":instance.userGroupId,
       "name":instance.userGroupName,
@@ -78,17 +78,17 @@ Map<String, dynamic> _$$UserDataModelImplToJson(_$UserDataModelImpl instance) {
   }
 
     return {
-      'accessToken': instance.accessToken,
-      'refreshToken': instance.refreshToken,
-      'userId': instance.userId,
-      'userName': instance.userName,
+      'access': instance.accessToken,
+      'refresh': instance.refreshToken,
+      'user_id': instance.userId,
+      'username': instance.userName,
       // 'userGroupId': instance.userGroupId,
       // 'userGroupName': instance.userGroupName,
       'user_group':userGroup,
-      'retailerId': instance.retailerId,
-      'retailerName': instance.retailerName,
-      'distributerId': instance.distributerId,
-      'distributerName': instance.distributerName,
+      'retailer_id': instance.retailerId,
+      'retailer_name': instance.retailerName,
+      'distributor_id': instance.distributerId,
+      'distributor_name': instance.distributerName,
       'userType': instance.userType.name,
     };
 }

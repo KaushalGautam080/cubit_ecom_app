@@ -9,19 +9,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   runApp(const MyApp());
   HttpOverrides.global = MyHttpOverrides();
-  
 }
+
+final authCubit = AuthCubit();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) =>AuthCubit(),child: const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: Login(),
-    ));
+    return BlocProvider(
+      create: (context) => authCubit..checkLogin(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        home: Login(),
+      ),
+    );
   }
 }
 
